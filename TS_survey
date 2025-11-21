@@ -1,0 +1,69 @@
+import { ICONS } from '@/mocks/add-coach-mock';
+import { COACH_GROUP, QUESTION_TYPE, SURVEY_TYPE, TIMING_OPTION } from '@/mocks/survey-mock-data';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  DropdownComponent,
+  FormFieldWrapperComponent,
+  InputComponent,
+  SelectComponent,
+  TextareaComponent,
+} from '@Digital-mfg/mhi-ui-components';
+
+@Component({
+  selector: 'app-survey',
+  imports: [
+    SelectComponent,
+    DropdownComponent,
+    TextareaComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormFieldWrapperComponent,
+    InputComponent,
+  ],
+  templateUrl: './survey.html',
+  styleUrl: './survey.scss',
+})
+export class Survey {
+  survey_type = SURVEY_TYPE;
+  coach_group = COACH_GROUP;
+  timing = TIMING_OPTION;
+  question_type = QUESTION_TYPE;
+
+  searchIcon = ICONS.search;
+  arrowIcon = ICONS.dropdown;
+  surveyForm: FormGroup;
+
+  isEmailEnabled = false;
+  constructor(private fb: FormBuilder) {
+    this.surveyForm = this.fb.group({
+      surveyType: ['', [Validators.required]],
+      timing: ['', [Validators.required]],
+    });
+  }
+
+  onSelectChange(value: string | string[]) {
+    this.surveyForm.get('surveyType')?.setValue(value);
+    this.surveyForm.get('surveyType')?.markAsTouched();
+  }
+
+  onSelectChangeTiming(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const value = selectElement.value;
+    this.surveyForm.get('timing')?.setValue(value);
+    this.surveyForm.get('timing')?.markAsTouched();
+    console.log('Selected timing:', value);
+  }
+
+  toggleEmailNotification() {
+    this.isEmailEnabled = !this.isEmailEnabled;
+  }
+}
