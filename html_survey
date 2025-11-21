@@ -1,0 +1,304 @@
+<div class="survey-form-wrap d-flex justify-content-center w-100">
+  <div class="survey-container">
+    <div class="d-flex justify-content-between align-items-center header-section">
+      <div class="form-heading">Create New Survey</div>
+      <div>
+        <span class="survey-information me-4">* This Survey Is For Coaches Only</span>
+        <button class="publish-btn me-2">Preview</button>
+        <button class="cancel-btn me-2">Cancel</button>
+        <button class="publish-btn">Publish</button>
+      </div>
+    </div>
+    <!-- <div class="form-heading">Create New Survey</div> -->
+    <form class="survey-form" [formGroup]="surveyForm">
+      <div class="row g-3">
+        <div class="col-lg-4 col-md-6 col-12">
+          <!-- select surevey Type -->
+          <label for="surveyType" class="form-label">Select Survey Type</label>
+          <tvsm-select
+            #surveyType
+            id="surveyType"
+            [options]="survey_type"
+            (selectionChange)="onSelectChange($event)"
+          >
+          </tvsm-select>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+          <!-- select coach grp -->
+          <label for="coach_group" class="form-label">Select Coach Group</label>
+          <tvsm-dropdown
+            [options]="coach_group"
+            placeholder="Select"
+            [searchable]="true"
+            [multiple]="true"
+            id="coach_group"
+            [showCheckboxes]="true"
+            [filterIcon]="false"
+            searchPlaceholder="Search"
+            [searchIconContent]="searchIcon"
+            [arrowIconContent]="arrowIcon"
+          ></tvsm-dropdown>
+        </div>
+      </div>
+
+      <div>
+        <!-- survey description -->
+        <label for="description" class="form-label">Survey Description</label>
+        <tvsm-textarea maxlength="250" name="description"> </tvsm-textarea>
+      </div>
+
+      <div>
+        <!-- Email notification -->
+        <label class="form-label d-block" for="email-notification">Email Notification</label>
+        <div class="form-check form-switch toggle-section mt-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="email-notification"
+            [checked]="isEmailEnabled"
+            (change)="toggleEmailNotification()"
+          />
+          @if (isEmailEnabled) {
+            <div class="d-flex column-gap-2 align-items-center">
+              <select
+                id="timing"
+                class="form-select custom-timing-select"
+                formControlName="timing"
+                (change)="onSelectChangeTiming($event)"
+              >
+                <option value="" disabled selected>Select</option>
+                <option *ngFor="let option of timing" [value]="option.label">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="timing-text">before survey starts</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <!-- Add questions section -->
+        <h1 class="form-label d-block">Add Questions</h1>
+
+        <div class="question-card-wrapper">
+          <div class="question-type-section">
+            <!-- question type section -->
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="select-section">
+                <tvsm-select [options]="question_type" placeholder="Single Choice">
+                  <ng-template>
+                    <img
+                      src="./assets/images/dropdown.svg"
+                      alt="Dropdown Icon"
+                      class="custom-dropdown-icon"
+                    />
+                  </ng-template>
+                </tvsm-select>
+              </div>
+
+              <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center me-4">
+                  <input type="checkbox" id="customCheck" class="default-answer-checkbox me-2" />
+                  <label for="customCheck" class="mb-0">Default Answers</label>
+                </div>
+                <div>
+                  <img
+                    src="./assets/images/delete.svg"
+                    alt="Delete Icon"
+                    width="20px"
+                    height="20px"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="dashed" />
+
+          <div class="add-question-section container-fluid m-0 p-0 mt-1">
+            <div class="row align-items-center m-0 p-0">
+              <!-- Question Number -->
+              <div class="col-auto m-0 p-0">
+                <div class="question-number">1</div>
+              </div>
+
+              <!-- Input (full width) -->
+              <div class="col m-0">
+                <tvsm-form-field-wrapper class="w-100">
+                  <tvsm-input class="w-100" type="text" placeholder=""></tvsm-input>
+                </tvsm-form-field-wrapper>
+              </div>
+              <!-- Radio Options Section -->
+              <div class="col-12 p-0 options-section">
+                <div class="radio-options d-flex flex-wrap align-items-center">
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="never" />
+                    <span>Never</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="almost-never" />
+                    <span>Almost Never</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="rarely" />
+                    <span>Rarely</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="often" />
+                    <span>Often</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="always" />
+                    <span>Always</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-card-wrapper mt-3">
+          <div class="question-type-section">
+            <!-- question type section -->
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="select-section">
+                <tvsm-select [options]="question_type" placeholder="Write Answer">
+                  <ng-template>
+                    <img
+                      src="./assets/images/dropdown.svg"
+                      alt="Dropdown Icon"
+                      class="custom-dropdown-icon"
+                    />
+                  </ng-template>
+                </tvsm-select>
+              </div>
+
+              <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center me-4">
+                  <input type="checkbox" id="customCheck" class="default-answer-checkbox me-2" />
+                  <label for="customCheck" class="mb-0">Default Answers</label>
+                </div>
+                <div>
+                  <img
+                    src="./assets/images/delete.svg"
+                    alt="Delete Icon"
+                    width="20px"
+                    height="20px"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="dashed" />
+
+          <div class="add-question-section container-fluid m-0 p-0 mt-1">
+            <div class="row align-items-center m-0 p-0">
+              <!-- Question Number -->
+              <div class="col-auto m-0 p-0">
+                <div class="question-number">2</div>
+              </div>
+
+              <!-- Input (full width) -->
+              <div class="col m-0">
+                <tvsm-form-field-wrapper class="w-100">
+                  <tvsm-input class="w-100" type="text" placeholder=""></tvsm-input>
+                </tvsm-form-field-wrapper>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- multiple select -->
+         <div class="question-card-wrapper mt-3">
+          <div class="question-type-section">
+            <!-- question type section -->
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="select-section">
+                <tvsm-select [options]="question_type" placeholder="Multiple Choice">
+                  <ng-template>
+                    <img
+                      src="./assets/images/dropdown.svg"
+                      alt="Dropdown Icon"
+                      class="custom-dropdown-icon"
+                    />
+                  </ng-template>
+                </tvsm-select>
+              </div>
+
+              <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center me-4">
+                  <input type="checkbox" id="customCheck" class="default-answer-checkbox me-2" />
+                  <label for="customCheck" class="mb-0">Default Answers</label>
+                </div>
+                <div>
+                  <img
+                    src="./assets/images/delete.svg"
+                    alt="Delete Icon"
+                    width="20px"
+                    height="20px"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="dashed" />
+
+          <div class="add-question-section container-fluid m-0 p-0 mt-1">
+            <div class="row align-items-center m-0 p-0">
+              <!-- Question Number -->
+              <div class="col-auto m-0 p-0">
+                <div class="question-number">3</div>
+              </div>
+
+              <!-- Input (full width) -->
+              <div class="col m-0">
+                <tvsm-form-field-wrapper class="w-100">
+                  <tvsm-input class="w-100" type="text" placeholder=""></tvsm-input>
+                </tvsm-form-field-wrapper>
+              </div>
+              <!-- Radio Options Section -->
+              <div class="col-12 p-0 options-section">
+                <div class="radio-options multiple-choice d-flex flex-wrap align-items-center">
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="never" />
+                    <span>Never</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="almost-never" />
+                    <span>Almost Never</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="rarely" />
+                    <span>Rarely</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="often" />
+                    <span>Often</span>
+                  </label>
+
+                  <label class="radio-item d-flex align-items-center">
+                    <input type="radio" name="q1" value="always" />
+                    <span>Always</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="add-question-btn">Add Question</button>
+      </div>
+    </form>
+  </div>
+</div>
