@@ -1,0 +1,119 @@
+<div class="dashboard-card-body">
+  <div class="recommendation-header d-flex justify-content-between align-items-center">
+    <div class="coach-details d-flex align-items-center gap-3">
+      <img src="assets/images/male-icon.svg" alt="Coach Avatar" class="coach-avatar" />
+      @if (!isEmployee) {
+        <div class="coach-info-text">
+          <h5 class="coach-name m-0">
+            {{ session.employee.name }}
+          </h5>
+          <p class="coach-contact m-0">{{ session.employee.email }}</p>
+        </div>
+      } @else {
+        <div class="coach-info-text">
+          <h5 class="coach-name m-0">
+            {{ session.coach.name }}
+            <span class="coach-rating ms-2"
+              >{{ session.coach.coachDetails?.rating || 0 }} <i class="bi bi-star-fill"></i
+            ></span>
+          </h5>
+          <p class="coach-contact m-0">{{ session.coach.email }}</p>
+        </div>
+      }
+    </div>
+    <div class="text-end">
+      <div class="recommendation-count">{{ sessionLength - index }}/{{ sessionLength + 1 }}</div>
+      <p class="recommendation-date">{{ getAppointmentDate(session.appointment.startTime) }}</p>
+    </div>
+  </div>
+
+  <div class="recommendation-body">
+    <div class="rfl-wrap border-0">
+      <div class="row">
+        <div class="col-md-9">
+          <p class="fw-semibold mb-2">Advices : Advice Given - Frequency - Comments</p>
+        </div>
+        <div class="col-md-3">
+          <p class="fw-semibold mb-2">Your Progress</p>
+        </div>
+      </div>
+    </div>
+
+    @for (advice of session.recommendationItems; track $index) {
+      <div class="advice-list-item">
+        <div class="row align-items-center">
+          <div class="col-md-9">
+            <div class="d-flex align-items-center gap-2">
+              <span class="blue-circle"></span>
+              <p class="advice-text">
+                {{ advice.text }} - {{ advice.frequency }} - {{ advice.comment }}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 text-start text-success small">
+            @if (isEmployee && session.status === 'active') {
+              <div class="custom-select-wrapper">
+                <tvsm-select
+                  [options]="options"
+                  [(ngModel)]="advice.compliance"
+                  (selectionChange)="onComplianceChange(advice, $event)"
+                  [disabled]="!!advice.compliance"
+                ></tvsm-select>
+              </div>
+            } @else {
+              <p class="advice-progress">{{ getComplianceLabel(advice.compliance || '') }}</p>
+            }
+          </div>
+        </div>
+      </div>
+    }
+    @if (session.feedback && session.feedback.length > 0) {
+      <div class="feedback-wrap mt-3 d-flex align-items-center gap-2">
+        <div class="fw-col fw-left d-flex align-items-center gap-2">
+          <i class="bi bi-chat-left-text text-primary"></i>
+          <h5 class="fw-title">Feedback</h5>
+        </div>
+        <div class="fw-col fw-right">
+          <p class="text-muted small">{{ session.feedback[0].comments }}</p>
+        </div>
+        <div class="fw-col fw-right">
+          <span class="coach-rating ms-2">
+            {{ session.feedback[0].rating || 0 }} <i class="bi bi-star-fill"></i>
+          </span>
+        </div>
+      </div>
+    }
+
+    @if (isEmployee && session.status === 'active') {
+      <div
+        class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-end align-items-center row-gap-2 column-gap-2 mt-3"
+      >
+        <div>
+          <button
+            class="download-button mt-2 mt-lg-0 d-flex align-items-center justify-content-center"
+          >
+            <img
+              src="./assets/images/mail-icon.svg"
+              alt="Email Icon"
+              class="me-2 button-prefix-icon"
+            />
+            <span>Email</span>
+          </button>
+        </div>
+
+        <div>
+          <button
+            class="download-button mt-2 mt-lg-0 d-flex align-items-center justify-content-center"
+          >
+            <img
+              src="assets/images/download-icon.svg"
+              alt="Download Icon"
+              class="me-2 button-prefix-icon"
+            />
+            <span>Download</span>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
