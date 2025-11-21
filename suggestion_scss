@@ -1,0 +1,39 @@
+.coaching-history {
+  .session-card {
+    border-radius: 10px;
+    border: 1px solid #eee;
+
+    input.form-control {
+      font-size: 0.9rem;
+    }
+
+    &.readonly {
+      background-color: #fafafa;
+      .fw-medium {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .btn-flag {
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .coach-details {
+    flex-direction: column;
+  }
+
+  .inner-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      margin-left: 0 !important;
+    }
+  }
+}
