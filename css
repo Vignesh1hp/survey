@@ -1,0 +1,476 @@
+.survey-form-wrap {
+  background-color: #fafbff;
+}
+
+.survey-form {
+  border: 1px solid #eaeaea;
+  padding: 32px 35px 20px 32px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: white;
+}
+
+.survey-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 24px;
+}
+
+.form-heading {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #212121;
+  // padding:28px 0px 8px 0px;
+}
+
+.header-section {
+  margin-bottom: 16px;
+}
+
+.survey-information {
+  color: #ff0707;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.form-label {
+  color: #212121;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+// select style - custom
+::ng-deep .tvsm-select {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 400 !important; /* Regular */
+  font-size: 0.875rem !important;
+  color: #909090 !important;
+  opacity: 1 !important;
+
+  border: 0.5px solid #cbcbcb !important;
+  border-radius: 20px !important;
+  padding: 0.5rem 1rem !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease !important;
+  outline: none !important;
+  background-image: none !important;
+
+  background-image: url('/assets/images/dropdown.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  /* For placeholder / selected text inside */
+  .tvsm-select-placeholder,
+  .tvsm-select-value {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    color: #000 !important;
+    opacity: 1 !important;
+  }
+
+  &:focus {
+    border-color: #183883 !important;
+  }
+}
+
+::ng-deep.tvsm-select-container {
+  border: none !important;
+  background-color: transparent !important;
+
+  &:focus-within {
+    box-shadow: none !important;
+  }
+}
+
+/* ───────────────  MULTISELECT  ─────────────── */
+::ng-deep .tvsm-dropdown__trigger:hover {
+  border: 1px solid #c0c0c1 !important;
+}
+
+::ng-deep.tvsm-dropdown__trigger .tvsm-dropdown__display-text{
+  padding: 10px 20px 10px 20px;
+}
+
+::ng-deep.tvsm-dropdown__trigger .tvsm-dropdown__arrow{
+  padding:10px 15px;
+}
+
+::ng-deep .tvsm-dropdown__trigger--open {
+  border: 1px solid #183883 !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .tvsm-dropdown__search-input {
+  border: 1px solid #c0c0c1 !important;
+
+  &:focus {
+    border-color: #183883 !important;
+  }
+
+}
+
+::ng-deep .tvsm-dropdown .tvsm-dropdown__display-text {
+  color: #909090 !important;
+}
+
+/* ───────────────  TEXTAREA  ─────────────── */
+::ng-deep .tvsm-textarea {
+  font-size: 0.813rem !important;
+  color: #909090 !important;
+  border: 1px solid #c0c0c1 !important;
+  border-radius: 0.5rem !important;
+  padding: 0.3125rem !important;
+  background-color: white!important;
+  &:focus {
+    border-color: #183883 !important;
+    color: #1c1c1c !important;
+    box-shadow: none !important;
+  }
+}
+
+::ng-deep.tvsm-textarea:focus-visible {
+    outline: none!important;
+}
+
+.custom-timing-select {
+  width: 100px;
+  height: 30px;
+  padding: 0px 8px;
+  border-radius: 4px;
+  border: 1px solid #707070;
+  background-color: #fff;
+  font-size: 0.75rem;
+  color: #5d5d5d;
+  margin-left: 10px;
+  cursor: pointer;
+
+  &:focus {
+    border-color: #183883 !important;
+    outline: none;
+    box-shadow: none !important;
+  }
+}
+
+/* Option base style — you can refine later */
+.custom-timing-option {
+  background-color: #fff;
+  color: #5d5d5d;
+}
+
+.toggle-section {
+  display: flex;
+  align-items: center;
+}
+
+.timing-text {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #5f5d5d;
+}
+
+/* ───────────────  BUTTONS  ─────────────── */
+.add-question-btn {
+  background-color: #ffff;
+  color: #0131ff;
+  border: 2px solid #0131ff;
+  padding: 6px 20px; // 7px 20px
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 20rem; // 21px
+  &:hover {
+    background-color: #0131ff;
+    color: white;
+  }
+}
+
+.back-btn {
+  background-color: #ffff;
+  color: #5b2ae3;
+  border: 2px solid #5b2ae3;
+  padding: 6px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  &:hover {
+    background-color: #5b2ae3;
+    color: #ffffff;
+  }
+}
+
+.cancel-btn {
+  background-color: #ffff;
+  color: #0131ff;
+  border: 2px solid #0131ff;
+  padding: 6px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  &:hover {
+    background-color: #0131ff;
+    color: #ffffff;
+  }
+}
+
+.publish-btn {
+  background-color: #5b2ae3;
+  color: #ffff;
+  padding: 6px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  &:hover {
+    background-color: #3407b1;
+  }
+}
+
+// Add question section
+
+.question-card-wrapper {
+  border: 1px solid #eaeaea;
+  border-radius: 1rem;
+  padding: 19px 27px 32px 24px;
+}
+
+.add-question-section {
+  max-width: 900px; // limit width
+  width: 100%; // responsive  // centers the section
+}
+
+.question-number {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #909090;
+  color: #484848;
+}
+
+//custom input box
+::ng-deep.tvsm-input {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 400 !important; // Regular
+  font-size: 0.875rem !important; // 14px
+  color: #909090 !important; // optional, adjust as per design
+  opacity: 1 !important;
+
+  border: 1px solid #0131ff !important;
+  border-radius: 20px !important;
+  padding: 0.5rem 0.875rem !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease !important;
+
+  &::placeholder {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    color: #999999 !important; // subtle placeholder color
+  }
+
+  &:focus {
+    border: 1px solid #183883 !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// radio button styles
+.radio-options {
+  gap: 48px; // spacing between options
+}
+
+@media (max-width: 810px) {
+  .radio-options {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+}
+
+
+.radio-item {
+  font-size: 0.875rem;
+  color: #484848;
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-item input[type='radio'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c9c9c9;
+  border-radius: 50%;
+  margin-right: 8px;
+  cursor: pointer;
+  // position: relative;
+    &:checked {
+    background-color: #3260f4;
+  }
+}
+
+.radio-options {
+  margin-top: 34px;
+}
+
+
+// question select section
+// select styles
+
+.select-section {
+  ::ng-deep .tvsm-select-container {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  ::ng-deep .tvsm-select {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    color: #1c1c1c !important;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    appearance: none !important;
+    flex: 1 !important;
+    background-image: './assets/images/dropdown.svg' !important;
+  }
+
+  ::ng-deep .custom-dropdown-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  ::ng-deep .tvsm-select__helper,
+  ::ng-deep .tvsm-select__error {
+    display: none !important;
+  }
+
+  ::ng-deep .tvsm-select-container:not(:has(.tvsm-select__dropdown-icon)) .tvsm-select {
+    background-image: url('/assets/images/dropdown.svg') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 35px center !important; /* 35px gap from text */
+    background-size: 14px !important;
+    padding-right: 70px !important; /* Space for the icon */
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: #000 !important;
+    font-size: 0.875rem !important;
+    cursor: pointer !important;
+    appearance: none !important;
+    text-align: center;
+  }
+}
+
+// checkbox styles
+.default-answer-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #5b2ae3;
+  cursor: pointer;
+}
+
+.dashed {
+  border: none;
+  border-top: 2px dashed #d0d0d0;
+  width: 100%;
+  opacity: 1;
+  margin-top: 14px;
+  margin-bottom: 16px;
+}
+
+.options-section {
+  margin-left: 55px;
+}
+
+.options-section-default{
+  margin-left: 55px;
+}
+
+@media (max-width: 810px) {
+  .options-section-default {
+    margin-left: 0 !important;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .options-section {
+    margin-left: 0 !important;
+  }
+} 
+
+.enter-option-text {
+  color: #909090;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+.text-lower {
+  text-transform: lowercase !important;
+}
+
+
+.options-field-section {
+  row-gap: 16px;
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep.tvsm-input {
+    border: 1px solid #eaeaea !important;
+    &:focus {
+      border: 1px solid #183883 !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* Custom checkbox only when class is applied */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  appearance: none; /* remove default checkbox */
+  border: 2px solid #c9c9c9;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 8px;
+
+  &:checked {
+    background-color: #3260f4;
+  }
+}
+
+  .btn-flag {
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+
+
+  @media (max-width: 768px) {
+  .question-card-wrapper {
+    padding: 16px !important;
+  }
+
+  .question-number {
+    margin-bottom: 8px;
+  }
+
+  .add-question-section {
+    max-width: 100% !important;
+  }
+}
