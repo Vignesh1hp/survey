@@ -1,0 +1,26 @@
+@media (max-width: 576px) {
+  .survey-form {
+    padding: 20px 14px 20px 14px;
+  }
+}
+
+.survey-container {
+  width: 100%;
+  max-width: 1100px;
+  margin:24px 14px 10px 14px;
+}
+
+ <!-- DEFAULT ANSWERS ENABLED (Single / Multiple) -->
+                @if (q.defaultAnswerEnabled && q.type !== 'write') {
+                  <div class="col-12 p-0 options-section-default d-flex justify-content-start">
+                    <div
+                      class="radio-options d-flex flex-md-row flex-wrap align-items-start justify-content-center justify-content-md-start"
+                    >
+
+
+   // @media (max-width: 810px) {
+//   .options-section-default {
+//     margin-left: 0 !important;
+//     // justify-content: center;
+//   }
+// }
