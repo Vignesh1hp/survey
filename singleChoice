@@ -1,0 +1,139 @@
+<div>
+  <div class="question-card-wrapper mt-3">
+    <!-- QUESTION BODY -->
+    <div class="add-question-section container-fluid m-0 p-0 mt-1">
+      <div class="row align-items-center m-0 p-0">
+        <!-- Number -->
+        <div class="row align-items-center m-0 p-0 flex-nowrap">
+          <!-- <div class="col-auto m-0 p-0">
+            <div class="question-number">{{ index + 1 }}</div>
+          </div>
+
+          <div class="col m-0">
+            <tvsm-form-field-wrapper class="w-100">
+              <tvsm-input class="w-100" type="text" placeholder="Enter your question"></tvsm-input>
+            </tvsm-form-field-wrapper>
+          </div> -->
+          <div>
+            
+          </div>
+        </div>
+        <hr class="dashed" />
+
+        <div class="col-12 p-0 options-section-default d-flex justify-content-start">
+          <div
+            class="radio-options d-flex flex-md-row flex-wrap align-items-start justify-content-center justify-content-md-start"
+          >
+            @for (opt of defaultOptions; track opt.value) {
+              <label class="radio-item d-flex align-items-center">
+                <input
+                  [type]="'radio'"
+                />
+                <span>{{ opt.label }}</span>
+              </label>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+scss:
+.question-card-wrapper {
+  border: 1px solid #eaeaea;
+  border-radius: 1rem;
+  padding: 19px 27px 32px 24px;
+  max-width: 1450px;
+}
+
+.add-question-section {
+  max-width: 900px; // limit width
+  width: 100%; // responsive  // centers the section
+}// radio button styles
+.radio-options {
+  gap: 48px; // spacing between options
+}
+
+@media (max-width: 810px) {
+  .radio-options {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+}
+
+.radio-item {
+  font-size: 0.875rem;
+  color: #484848;
+  user-select: none;
+}
+
+.radio-item input[type='radio'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c9c9c9;
+  border-radius: 50%;
+  margin-right: 8px;
+  cursor: pointer;
+  // position: relative;
+  &:checked {
+    background-color: #3260f4;
+  }
+}
+
+.radio-options {
+  margin-top: 34px;
+}
+
+.options-section-default {
+  margin-left: 55px;
+}
+
+.dashed {
+  border: none;
+  border-top: 2px dashed #d0d0d0;
+  width: 100%;
+  opacity: 1;
+  margin-top: 14px;
+  margin-bottom: 16px;
+}
+
+TS:
+import { Component } from '@angular/core';
+
+export interface Question {
+  id: number;
+  type: 'single' | 'multiple' | 'write';
+  defaultAnswerEnabled: boolean;
+  options: QuestionOption[];
+  selectedDefaults: string[]; // NEW
+}
+
+export interface QuestionOption {
+  id: number;
+  label: string;
+}
+
+@Component({
+  selector: 'app-single-choice-card',
+  imports: [],
+  templateUrl: './single-choice-card.html',
+  styleUrl: './single-choice-card.scss',
+})
+export class SingleChoiceCard {
+  defaultOptions = [
+    { value: 'never', label: 'Never' },
+    { value: 'almost-never', label: 'Almost Never' },
+    { value: 'rarely', label: 'Rarely' },
+    { value: 'often', label: 'Often' },
+    { value: 'always', label: 'Always' },
+  ];
+
+  isOptionSelected(q: Question, label: string): boolean {
+    return q.selectedDefaults.includes(label);
+  }
+
+
+}
+
