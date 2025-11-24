@@ -1,0 +1,97 @@
+<div class="preview-header d-flex align-items-center justify-content-between">
+  <div class="left-content">
+    <h2 class="survey-type">{{ headerData.surveyType }}</h2>
+    <p class="survey-text">
+      Ground-Breaking Initiative Designed With One Goal In Mind: Your Well-Being. At Tvsm,<br />
+      We Deeply Value Each Member Of Our Team, And Mhi Is Our Commitment To Empowering You On
+    </p>
+  </div>
+
+  <div class="right-content d-flex flex-column row-gap-2">
+    <p>Conducted by: {{ headerData.conductedBy }}</p>
+    <p>Due Date: {{ headerData.dueDate }}</p>
+    <p>Duration: {{ headerData.duration }}</p>
+  </div>
+</div>
+
+
+scss:
+
+*{
+  padding:0px;
+  margin:0px;
+  box-sizing: border-box;
+}
+.preview-header {
+  padding: 24px;
+  border-radius: 12px;
+  background: #fff;
+  flex-wrap: wrap; 
+  // max-width: 1450px;
+
+ background: linear-gradient(
+    180deg,
+    #9E7FF7 0%,
+    #7D4DFF 100%,
+    #2E1572 100%
+  );
+  box-shadow: 0px 0px 1px #0000c73b;
+  border-radius: 16px;
+  border: 1px solid #EAEAEA;
+}
+
+.survey-type{
+  font-size: 1.375rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.survey-text{
+  font-family: 0.875rem;
+  font-weight: 400;
+  color:#ffffff;
+}
+
+.left-content{
+  width: 700px;
+  min-width: 100px; //
+}
+
+.right-content{
+  width: 200px;
+  min-width: 150px; // for responsiveness
+  p{
+    font-size: 1rem;
+    font-weight: 600;
+    color:#ffffff;
+  }
+}
+
+@media (max-width: 960px) {
+  .right-content {
+      margin-top: 16px; // spacing after left content
+    }
+}
+
+
+TS:
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-header-card',
+  imports: [],
+  templateUrl: './header-card.html',
+  styleUrl: './header-card.scss',
+})
+export class HeaderCard {
+  headerData = {
+    surveyType: 'Operations Stress Survey',
+    description: `Ground-Breaking Initiative Designed With One Goal In Mind: Your Well-Being. 
+    At Tvsm, We Deeply Value Each Member Of Our Team, 
+    And Mhi Is Our Commitment To Empowering You On`,
+    conductedBy: 'Coach 1',
+    dueDate: 'DD-MM-YYYY',
+    duration: '5 minutes',
+  };
+}
